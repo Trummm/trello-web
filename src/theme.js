@@ -3,8 +3,8 @@ import { red } from '@mui/material/colors'
 
 const theme = createTheme({
   trello: {
-    appBarHeight: '58px',
-    boardBarHeight: '60px',
+    appBarHeight: '62px',
+    boardBarHeight: '64px',
   },
 
   palette: {

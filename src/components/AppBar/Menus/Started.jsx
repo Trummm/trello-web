@@ -29,7 +29,7 @@ function Started() {
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
           endIcon={<KeyboardArrowDownIcon />}
-          sx={{ color: '#2ECC71' }}
+          sx={{ color: '#ccc' }}
         >
           Started
         </Button>

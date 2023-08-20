@@ -7,11 +7,8 @@ import Workspaces from './Menus/Workspaces'
 import Recent from './Menus/Recent'
 import Started from './Menus/Started'
 import Templates from './Menus/Templates'
-import NotificationsIcon from '@mui/icons-material/Notifications'
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import Tooltip from '@mui/material/Tooltip'
-import Avatar from '@mui/material/Avatar'
-import Stack from '@mui/material/Stack'
-import avatar from '../../assets/images/trum.png'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import AccountMenu from './Menus/AccountMenu'
 
@@ -20,7 +17,7 @@ function AppBar() {
     <Box
       px={2}
       sx={{
-        backgroundColor: '#fff',
+        backgroundColor: '#1d2125',
         width: '100%',
         display: 'flex',
         height: (theme) => theme.trello.appBarHeight,
@@ -30,11 +27,11 @@ function AppBar() {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <AppsIcon sx={{ color: '#2ECC71' }} />
+        <AppsIcon sx={{ color: '#ccc' }} />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <SvgIcon component={trelloIcon} sx={{ color: '#2ECC71' }} />
+          <SvgIcon component={trelloIcon} sx={{ color: '#ccc' }} />
           <Typography
-            sx={{ fontSize: '1,2rem', fontWeight: 'bold', color: '#2ECC71' }}
+            sx={{ fontSize: '1,2rem', fontWeight: 'bold', color: '#ccc' }}
             variant='span'
           >
             Trello
@@ -45,7 +42,10 @@ function AppBar() {
         <Recent />
         <Started />
         <Templates />
-        <Button sx={{ backgroundColor: '#2ECC71' }} variant='contained'>
+        <Button
+          sx={{ backgroundColor: '#579dff', color: '#1f262e' }}
+          variant='contained'
+        >
           Create
         </Button>
       </Box>
@@ -53,17 +53,17 @@ function AppBar() {
         <TextField
           sx={{
             '& .MuiFormLabel-root': {
-              color: 'black',
+              color: '#ccc',
             },
             '& .MuiFormLabel-root.Mui-focused': {
-              color: 'black',
+              color: '#ccc',
             },
-            '& .MuiInputLabel-root': { color: 'black' },
+            '& .MuiInputLabel-root': { color: '#ccc' },
             '& .MuiOutlinedInput-root': {
-              '& > fieldset': { borderColor: 'black' },
+              '& > fieldset': { borderColor: '#ccc' },
             },
             '& input': {
-              color: 'black',
+              color: '#ccc',
             },
           }}
           id='outlined-search'
@@ -73,11 +73,20 @@ function AppBar() {
         />
 
         <Tooltip title='Notification'>
-          <Badge sx={{ cursor: 'pointer' }} color='secondary' variant='dot'>
-            <NotificationsIcon />
+          <Badge
+            sx={{
+              '& .MuiBadge-badge': {
+                backgroundColor: '#579dff',
+              },
+              cursor: 'pointer',
+            }}
+            color='secondary'
+            variant='dot'
+          >
+            <NotificationsNoneIcon sx={{ color: '#ccc' }} />
           </Badge>
         </Tooltip>
-        <HelpOutlineIcon />
+        <HelpOutlineIcon sx={{ color: '#ccc' }} />
         <AccountMenu />
       </Box>
     </Box>
