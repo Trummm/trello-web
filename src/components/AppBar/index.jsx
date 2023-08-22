@@ -1,4 +1,4 @@
-import { Badge, Box, Button, TextField } from '@mui/material'
+import { Badge, Box, TextField } from '@mui/material'
 import AppsIcon from '@mui/icons-material/Apps'
 import SvgIcon from '@mui/material/SvgIcon'
 import { ReactComponent as trelloIcon } from '../../assets/trello.svg'
@@ -11,6 +11,7 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import AccountMenu from './Menus/AccountMenu'
+import Button from '../Button/Button'
 
 function AppBar() {
   return (
@@ -42,12 +43,7 @@ function AppBar() {
         <Recent />
         <Started />
         <Templates />
-        <Button
-          sx={{ backgroundColor: '#579dff', color: '#1f262e' }}
-          variant='contained'
-        >
-          Create
-        </Button>
+        <Button text='Create' />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <TextField
