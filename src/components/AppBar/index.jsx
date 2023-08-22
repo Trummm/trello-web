@@ -38,7 +38,7 @@ function AppBar() {
           </Typography>
         </Box>
 
-        <Workspaces />
+        <Workspaces name='WorkSpaces' color='#ccc' />
         <Recent />
         <Started />
         <Templates />
