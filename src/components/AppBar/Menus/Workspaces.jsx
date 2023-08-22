@@ -17,7 +17,7 @@ import {
 } from '@mui/icons-material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
-function Workspaces() {
+function Workspaces({ name, color }) {
   const [anchorEl, setAnchorEl] = useState(null)
 
   const open = Boolean(anchorEl)
@@ -40,9 +40,9 @@ function Workspaces() {
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
           endIcon={<KeyboardArrowDownIcon />}
-          sx={{ color: '#ccc' }}
+          sx={{ color: { color } }}
         >
-          Workspaces
+          {name}
         </Button>
         <Menu
           id='basic-menu-workspaces'
