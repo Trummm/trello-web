@@ -11,7 +11,15 @@ import PersonIcon from '@mui/icons-material/Person'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
 
-function Card() {
+function Card({ card }) {
+  const shouldShowCardAction = () => {
+    return (
+      !!card?.memberIds.length ||
+      !!card?.comments.length ||
+      !!card?.attachments.length
+    )
+  }
+
   return (
     <MuiCard
       sx={{
@@ -20,37 +28,43 @@ function Card() {
         overflow: 'unset',
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image='https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yasuo_56.jpg'
-        title='green iguana'
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
       <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
-        <Typography>Yasuo Design</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions>
-        <Button
-          sx={{ cursor: 'pointer' }}
-          size='small'
-          startIcon={<PersonIcon />}
-        >
-          12
-        </Button>
-        <Button
-          sx={{ cursor: 'pointer' }}
-          size='small'
-          startIcon={<ChatBubbleIcon />}
-        >
-          20
-        </Button>
-        <Button
-          sx={{ cursor: 'pointer' }}
-          size='small'
-          startIcon={<RemoveRedEyeIcon />}
-        >
-          16
-        </Button>
-      </CardActions>
+      {shouldShowCardAction() && (
+        <CardActions>
+          {!!card?.memberIds.length && (
+            <Button
+              sx={{ cursor: 'pointer' }}
+              size='small'
+              startIcon={<PersonIcon />}
+            >
+              {card?.memberIds.length}
+            </Button>
+          )}
+
+          {!!card?.comments.length && (
+            <Button
+              sx={{ cursor: 'pointer' }}
+              size='small'
+              startIcon={<ChatBubbleIcon />}
+            >
+              {card?.comments.length}
+            </Button>
+          )}
+
+          {!!card?.attachments.length && (
+            <Button
+              sx={{ cursor: 'pointer' }}
+              size='small'
+              startIcon={<RemoveRedEyeIcon />}
+            >
+              {card?.attachments.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </MuiCard>
   )
 }

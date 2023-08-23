@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
 import AddCardIcon from '@mui/icons-material/AddCard'
 
-function BoardContent() {
+function BoardContent({ board }) {
   return (
     <Box
       sx={{
@@ -15,7 +15,9 @@ function BoardContent() {
         overflowY: 'hidden',
       }}
     >
-      <ListColumns />
+      {board.columns.map((column) => {
+        return <ListColumns key={column._id} column={column} />
+      })}
 
       <Box
         sx={{
