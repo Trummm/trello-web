@@ -4,7 +4,7 @@ import Card from './Card/Card'
 const COLUMN_HEADER_HEIGHT = '50px'
 const COLUMN_FOOTER_HEIGHT = '56px'
 
-function ListCards() {
+function ListCards({ cards }) {
   return (
     <Box
       sx={{
@@ -22,7 +22,9 @@ function ListCards() {
         '&::-webkit-scrollbar': { display: 'none' },
       }}
     >
-      <Card />
+      {cards.map((card) => {
+        return <Card key={card._id} card={card} />
+      })}
     </Box>
   )
 }

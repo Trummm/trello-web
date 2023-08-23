@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import Column from './Column/Column'
 
-function ListColumns() {
+function ListColumns({ column }) {
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ function ListColumns() {
           `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`,
       }}
     >
-      <Column />
+      <Column column={column} />
     </Box>
   )
 }

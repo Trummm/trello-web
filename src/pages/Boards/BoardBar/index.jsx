@@ -1,5 +1,5 @@
-import { Dashboard, Fingerprint } from '@mui/icons-material'
-import { Avatar, AvatarGroup, Box, Button, IconButton } from '@mui/material'
+import { Dashboard } from '@mui/icons-material'
+import { Avatar, AvatarGroup, Box, Button } from '@mui/material'
 import Chip from '@mui/material/Chip'
 import VpnLockIcon from '@mui/icons-material/VpnLock'
 import AddToDriveIcon from '@mui/icons-material/AddToDrive'
@@ -11,8 +11,9 @@ import TrumAvatar3 from '../../../assets/images/2.jpg'
 import TrumAvatar4 from '../../../assets/images/3.jpg'
 import TrumAvatar5 from '../../../assets/images/chonky.jpg'
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt'
+import { capitalizeFirstLetter } from '../../../utils/formatter'
 
-function BoardBar() {
+function BoardBar({ board }) {
   const MENUSTYLE = {
     color: '#ccc',
     fontWeight: 'bold',
@@ -39,14 +40,14 @@ function BoardBar() {
         <Chip
           sx={MENUSTYLE}
           icon={<Dashboard sx={{ fill: '#ccc' }} />}
-          label='Trum Stack Board'
+          label={board?.title}
           clickable
         />
 
         <Chip
           sx={MENUSTYLE}
           icon={<VpnLockIcon sx={{ fill: '#ccc' }} />}
-          label='Public/Private WorkSpace'
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         />
 

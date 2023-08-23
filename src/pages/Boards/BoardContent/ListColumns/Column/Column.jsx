@@ -8,7 +8,7 @@ import ListCards from './ListCards/ListCards'
 
 const COLUMN_HEADER_HEIGHT = '50px'
 const COLUMN_FOOTER_HEIGHT = '56px'
-function Column() {
+function Column({ column }) {
   return (
     <>
       <Box
@@ -21,7 +21,7 @@ function Column() {
         }}
       >
         <Typography sx={{ fontWeight: 'bold', cursor: 'pointer' }}>
-          Column Title
+          {column.title}
         </Typography>
         <Box>
           <KeyboardArrowDownIcon />
@@ -29,7 +29,7 @@ function Column() {
         {/* <Workspaces color='black' /> */}
       </Box>
 
-      <ListCards />
+      <ListCards cards={column.cards} />
 
       <Box
         sx={{
