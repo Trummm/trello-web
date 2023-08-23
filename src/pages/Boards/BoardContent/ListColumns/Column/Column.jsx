@@ -5,12 +5,26 @@ import AddCardIcon from '@mui/icons-material/AddCard'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import ListCards from './ListCards/ListCards'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 const COLUMN_HEADER_HEIGHT = '50px'
 const COLUMN_FOOTER_HEIGHT = '56px'
 function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id })
+
+  const dndKitColumnStyles = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  }
   return (
-    <>
+    <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
+    >
       <Box
         sx={{
           height: COLUMN_HEADER_HEIGHT,
@@ -45,7 +59,7 @@ function Column({ column }) {
           <DragHandleIcon sx={{ cursor: 'pointer' }} />
         </Tooltip>
       </Box>
-    </>
+    </Box>
   )
 }
 
