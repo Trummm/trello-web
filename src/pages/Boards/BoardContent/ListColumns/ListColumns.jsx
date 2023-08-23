@@ -1,29 +1,42 @@
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import Column from './Column/Column'
-import {
-  SortableContext,
-  horizontalListSortingStrategy,
-} from '@dnd-kit/sortable'
+import AddCardIcon from '@mui/icons-material/AddCard'
 
-function ListColumns({ column }) {
+function ListColumns({ columns }) {
   return (
-    <SortableContext items={column} strategy={horizontalListSortingStrategy}>
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+        borderRadius: '6px',
+        display: 'flex',
+        overflowX: 'auto',
+        overflowY: 'hidden',
+        color: 'black',
+        '&::-webkit-scrollbar-track': { m: 2 },
+      }}
+    >
+      {columns?.map((column) => {
+        return <Column key={column._id} column={column} />
+      })}
+
       <Box
         sx={{
-          minWidth: '300px',
-          maxWidth: '300px',
-          ml: 2,
-          borderRadius: '6px',
-          backgroundColor: '#ccc',
-          color: 'black',
+          minWidth: '200px',
+          maxWidth: '200px',
+          backgroundColor: '#579dff',
           height: 'fit-content',
-          maxHeight: (theme) =>
-            `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`,
+          borderRadius: '6px',
+          mx: 2,
+          color: '#1f262e',
+          pl: 2,
         }}
       >
-        <Column column={column} />
+        <Button sx={{ fontSize: '0.875rem' }} startIcon={<AddCardIcon />}>
+          Add new column
+        </Button>
       </Box>
-    </SortableContext>
+    </Box>
   )
 }
 
