@@ -1,8 +1,11 @@
 import { Box, Button } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
 import AddCardIcon from '@mui/icons-material/AddCard'
+// import { mapOder } from '../../../utils/sorts'
 
 function BoardContent({ board }) {
+  // const orderedColumns = mapOder(board?.columns, board?.columnOrderIds, '_id')
+
   return (
     <Box
       sx={{
