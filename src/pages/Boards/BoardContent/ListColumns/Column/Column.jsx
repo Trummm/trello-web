@@ -1,16 +1,31 @@
 import { Box, Button, Tooltip } from '@mui/material'
 import { Typography } from '@mui/material'
-// import Workspaces from '../../../components/AppBar/Menus/Workspaces'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import ListCards from './ListCards/ListCards'
+import { mapOrder } from '../../../../../utils/sorts'
 
 const COLUMN_HEADER_HEIGHT = '50px'
 const COLUMN_FOOTER_HEIGHT = '56px'
+
 function Column({ column }) {
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+
   return (
-    <>
+    <Box
+      sx={{
+        minWidth: '300px',
+        maxWidth: '300px',
+        backgroundColor: '#ccc',
+        ml: 2,
+        borderRadius: '6px',
+        height: 'fit-content',
+        maxHeight: (theme) =>
+          `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`,
+      }}
+    >
+      {/* Header */}
       <Box
         sx={{
           height: COLUMN_HEADER_HEIGHT,
@@ -21,7 +36,7 @@ function Column({ column }) {
         }}
       >
         <Typography sx={{ fontWeight: 'bold', cursor: 'pointer' }}>
-          {column.title}
+          {column?.title}
         </Typography>
         <Box>
           <KeyboardArrowDownIcon />
@@ -29,8 +44,9 @@ function Column({ column }) {
         {/* <Workspaces color='black' /> */}
       </Box>
 
-      <ListCards cards={column.cards} />
+      <ListCards cards={orderedCards} />
 
+      {/* Footer */}
       <Box
         sx={{
           height: COLUMN_FOOTER_HEIGHT,
@@ -45,7 +61,7 @@ function Column({ column }) {
           <DragHandleIcon sx={{ cursor: 'pointer' }} />
         </Tooltip>
       </Box>
-    </>
+    </Box>
   )
 }
 

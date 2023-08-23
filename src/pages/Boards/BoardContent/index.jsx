@@ -1,10 +1,9 @@
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import ListColumns from './ListColumns/ListColumns'
-import AddCardIcon from '@mui/icons-material/AddCard'
-// import { mapOder } from '../../../utils/sorts'
+import { mapOrder } from '../../../utils/sorts'
 
 function BoardContent({ board }) {
-  // const orderedColumns = mapOder(board?.columns, board?.columnOrderIds, '_id')
+  const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
 
   return (
     <Box
@@ -12,32 +11,11 @@ function BoardContent({ board }) {
         backgroundColor: '#1d2125',
         height: (theme) => theme.trello.boardContentHeight,
         width: '100%',
-        display: 'flex',
         borderTop: '1px solid #31373b',
-        overflowX: 'auto',
-        overflowY: 'hidden',
+        p: '10px 0',
       }}
     >
-      {board.columns.map((column) => {
-        return <ListColumns key={column._id} column={column} />
-      })}
-
-      <Box
-        sx={{
-          minWidth: '200px',
-          maxWidth: '200px',
-          backgroundColor: '#579dff',
-          height: 'fit-content',
-          borderRadius: '6px',
-          mx: 2,
-          color: '#1f262e',
-          pl: 2,
-        }}
-      >
-        <Button sx={{ fontSize: '0.875rem' }} startIcon={<AddCardIcon />}>
-          Add new column
-        </Button>
-      </Box>
+      <ListColumns columns={orderedColumns} />
     </Box>
   )
 }

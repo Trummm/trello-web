@@ -6,7 +6,6 @@ import {
   CardMedia,
 } from '@mui/material'
 import { Typography } from '@mui/material'
-// import Workspaces from '../../../components/AppBar/Menus/Workspaces'
 import PersonIcon from '@mui/icons-material/Person'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
