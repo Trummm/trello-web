@@ -5,15 +5,28 @@ import DragHandleIcon from '@mui/icons-material/DragHandle'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import ListCards from './ListCards/ListCards'
 import { mapOrder } from '../../../../../utils/sorts'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 const COLUMN_HEADER_HEIGHT = '50px'
 const COLUMN_FOOTER_HEIGHT = '56px'
 
 function Column({ column }) {
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id })
 
+  const dndDragStyle = {
+    touchAction: 'none',
+    transform: CSS.Translate.toString(transform),
+    transition,
+  }
   return (
     <Box
+      ref={setNodeRef}
+      style={dndDragStyle}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: '300px',
         maxWidth: '300px',
