@@ -9,6 +9,8 @@ import { Typography } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 function Card({ card }) {
   const shouldShowCardAction = () => {
@@ -19,8 +21,28 @@ function Card({ card }) {
     )
   }
 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: card._id, data: { ...card } })
+
+  const dndDragStyle = {
+    touchAction: 'none',
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : undefined,
+  }
+
   return (
     <MuiCard
+      ref={setNodeRef}
+      style={dndDragStyle}
+      {...attributes}
+      {...listeners}
       sx={{
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',

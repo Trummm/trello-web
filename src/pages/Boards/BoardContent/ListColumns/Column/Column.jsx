@@ -13,13 +13,20 @@ const COLUMN_FOOTER_HEIGHT = '56px'
 
 function Column({ column }) {
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: column._id })
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: column._id, data: { ...column } })
 
   const dndDragStyle = {
     touchAction: 'none',
     transform: CSS.Translate.toString(transform),
     transition,
+    opacity: isDragging ? 0.5 : undefined,
   }
   return (
     <Box
